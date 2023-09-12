@@ -1,12 +1,15 @@
-import './App.css';
+import AppRoutes from './AppRoutes.js';
+import { Navbar, AppRoutesContainer } from './components';
 
 function App() {
   return (
-    <>
-      <nav> NAVBAR</nav>
-      <main> MAIN BODY</main>
+    <div className='flex flex-col min-h-screen'>
+      <Navbar />
+      <AppRoutesContainer>
+        <AppRoutes />
+      </AppRoutesContainer>
       <footer> FOOTER </footer>
-    </>
+    </div>
   );
 }
 
