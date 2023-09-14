@@ -1,5 +1,5 @@
-import { AuthProps } from '../../interfaces/AuthProps';
-const AuthForm = ({ name, displayName }: AuthProps) => {
+import { AuthFormProps } from '../../interfaces/AuthFormProps';
+const AuthForm = ({ name, displayName }: AuthFormProps) => {
   return (
     <div>
       <h1>AuthForm to {displayName}</h1>

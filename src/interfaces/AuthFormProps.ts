@@ -1,4 +1,4 @@
-export interface AuthProps {
+export interface AuthFormProps {
   name: string;
   displayName: string;
 }
