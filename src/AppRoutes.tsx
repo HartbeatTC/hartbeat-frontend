@@ -7,11 +7,11 @@ const AppRoutes = () => {
       <Route path='/' element={<div>HOME</div>} />
       <Route
         path='/login'
-        element={<AuthForm name='login' displayName='Login' />}
+        element={<AuthForm name='login' capName='Login' />}
       />
       <Route
         path='/signup'
-        element={<AuthForm name='signup' displayName='Sign Up' />}
+        element={<AuthForm name='signup' capName='Sign Up' />}
       />
       <Route path='*' element={<PageNotFound />} />
     </Routes>
