@@ -8,13 +8,11 @@ import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
-  getAuth,
   UserCredential,
   updateProfile,
 } from 'firebase/auth';
+import { auth } from '../../firebase/indexTest';
 import firebase from 'firebase/compat/app';
-
-const auth = getAuth();
 
 interface AuthParams {
   email: string;
