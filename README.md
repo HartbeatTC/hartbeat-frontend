@@ -4,7 +4,7 @@ To contribute or test:
 
 ```
 - fork this repo
-- clone to local environment
+- git clone git@github.com:HartbeatTC/hartbeat-frontend.git
 - cd into file
 - npm install
 - npm run dev
