@@ -10,18 +10,45 @@ import { useDispatch, useSelector } from 'react-redux';
 import AppRoutes from './AppRoutes.js';
 import { Navbar, AppRoutesContainer } from './components';
 import { useEffect } from 'react';
-import { fetchUser } from './redux/features/authSlice.js';
-import { RootState } from './redux/store/index.js';
+import { fetchUser, login } from './redux/features/authSlice.js';
+import {
+  RootState,
+  useAppDispatch,
+  useAppSelector,
+} from './redux/store/index.ts';
+import { auth } from './firebase/index.ts';
+
+console.log('env', import.meta.env.VITE_FIREBASE_KEY);
 
 function App() {
-  const dispatch = useDispatch();
-  const user = useSelector((state: RootState) => state.auth.user);
+  const dispatch = useAppDispatch();
+  const { user } = useAppSelector((state: RootState) => state.auth);
+
+  // useEffect(() => {
+  //   if (!user) {
+  //     dispatch(fetchUser() as any);
+  //   }
+  // }, [dispatch, user]);
+
+  // const person = getAuth().currentUser;
+
+  console.log({ user });
 
   useEffect(() => {
-    if (!user) {
-      dispatch(fetchUser() as any);
-    }
-  }, [dispatch, user]);
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
+      if (user && user.email)
+        dispatch(
+          login({
+            email: user.email,
+            id: user.uid,
+            photoUrl: user?.photoURL || null,
+            displayName: user?.displayName || null,
+          })
+        );
+    });
+
+    return () => unsubscribe();
+  }, [dispatch]);
 
   return (
     <div className='flex flex-col min-h-screen'>

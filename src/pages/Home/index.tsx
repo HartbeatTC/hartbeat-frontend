@@ -7,11 +7,20 @@
     */
 
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { RootState, useAppSelector } from '../../redux/store';
 
 const Home = () => {
+  const { user } = useAppSelector((state: RootState) => state.auth);
+
   return (
     <div>
-      <h1>Home</h1>
+      <h1>HOME</h1>
+      {user && user.email !== null ? (
+        <p>Welcome {user.displayName}</p>
+      ) : (
+        <p>Please sign in!</p>
+      )}
     </div>
   );
 };

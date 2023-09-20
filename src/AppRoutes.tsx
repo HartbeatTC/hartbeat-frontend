@@ -8,11 +8,12 @@
 
 import { Routes, Route } from 'react-router-dom';
 import { AuthForm, PageNotFound } from './components';
+import { Home } from './pages';
 
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path='/' element={<div>HOME</div>} />
+      <Route path='/' element={<Home />} />
       <Route
         path='/login'
         element={<AuthForm name='login' capName='Login' />}

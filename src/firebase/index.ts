@@ -9,10 +9,14 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
-import { getAnalytics } from 'firebase/analytics';
+// import { getAnalytics } from 'firebase/analytics';
+
+console.log('env in firebase', import.meta.env.VITE_FIREBASE_KEY);
+console.log('env object', import.meta.env);
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  // apiKey: import.meta.env.VITE_FIREBASE_KEY,
+  apiKey: 'AIzaSyCGPfY1CDe4fxvEeJPQ42onoswDvpm-OxY',
   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
   projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
   storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
@@ -25,5 +29,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
+
+console.log('firebase initialized', app);
 
 // export const analytics = getAnalytics(app);

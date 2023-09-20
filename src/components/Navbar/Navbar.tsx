@@ -7,8 +7,20 @@
     */
 
 import { Link } from 'react-router-dom';
+import { RootState, useAppDispatch, useAppSelector } from '../../redux/store';
+import { logout } from '../../redux/features/authSlice';
+import { auth } from '../../firebase';
+import { signOut } from 'firebase/auth';
 
 const Navbar = () => {
+  const dispatch = useAppDispatch();
+  const { user } = useAppSelector((state: RootState) => state.auth);
+
+  const handleLogout = async () => {
+    await signOut(auth);
+    dispatch(logout());
+  };
+
   return (
     <nav className='flex w-full justify-center items-center'>
       <ul className='flex gap-6 w-full justify-between items-center'>
@@ -16,12 +28,23 @@ const Navbar = () => {
         <li>Team</li>
         <li>Schedule</li>
         <li>Results</li>
-        <li>
-          <Link to='/login'>Login</Link>
-        </li>
-        <li>
-          <Link to='/signup'>Sign up</Link>
-        </li>
+        {user && user.email ? (
+          <li>
+            <p onClick={handleLogout} className='hover:cursor-pointer'>
+              {' '}
+              Logout
+            </p>
+          </li>
+        ) : (
+          <>
+            <li>
+              <Link to='/login'>Login</Link>
+            </li>
+            <li>
+              <Link to='/signup'>Sign up</Link>
+            </li>
+          </>
+        )}
       </ul>
     </nav>
   );
