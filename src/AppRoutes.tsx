@@ -8,20 +8,31 @@
 
 import { Routes, Route } from 'react-router-dom';
 import { AuthForm, PageNotFound } from './components';
-import { Home } from './pages';
+import { Dashboard, Home } from './pages';
+import { RootState, useAppSelector } from './redux/store';
+import ProtectedRoutes from './ProtectedRoutes';
 
 const AppRoutes = () => {
+  const { user } = useAppSelector((state: RootState) => state.auth);
+
   return (
     <Routes>
       <Route path='/' element={<Home />} />
-      <Route
-        path='/login'
-        element={<AuthForm name='login' capName='Login' />}
-      />
-      <Route
-        path='/signup'
-        element={<AuthForm name='signup' capName='Sign Up' />}
-      />
+      {!user && (
+        <>
+          <Route
+            path='/login'
+            element={<AuthForm name='login' capName='Login' />}
+          />
+          <Route
+            path='/signup'
+            element={<AuthForm name='signup' capName='Sign Up' />}
+          />
+        </>
+      )}
+      <Route element={<ProtectedRoutes />}>
+        <Route path='/dashboard' element={<Dashboard />} />
+      </Route>
       <Route path='*' element={<PageNotFound />} />
     </Routes>
   );

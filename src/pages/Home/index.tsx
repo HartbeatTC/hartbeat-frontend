@@ -6,9 +6,8 @@
     United States of America copyright law and fair use.
     */
 
-import React from 'react';
-import { useSelector } from 'react-redux';
 import { RootState, useAppSelector } from '../../redux/store';
+import { capitalizeFullName } from '../../utils/capitalizeFullName';
 
 const Home = () => {
   const { user } = useAppSelector((state: RootState) => state.auth);
@@ -17,7 +16,7 @@ const Home = () => {
     <div>
       <h1>HOME</h1>
       {user && user.email !== null ? (
-        <p>Welcome {user.displayName}</p>
+        <p>Welcome {capitalizeFullName(user.displayName ?? '')}</p>
       ) : (
         <p>Please sign in!</p>
       )}

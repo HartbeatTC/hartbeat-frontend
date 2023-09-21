@@ -29,11 +29,16 @@ import { auth } from '../../firebase';
 const inputClasses = 'flex flex-col justify-between w-full';
 
 const AuthForm = ({ name, capName }: AuthFormProps) => {
-  const [displayName, setDisplayName] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [displayName, setDisplayName] = useState<string>('');
+  const [firstName, setFirstName] = useState<string>('');
+  const [lastName, setLastName] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [confirmPassword, setConfirmPassword] = useState<string>('');
+  const [errorMessage, setErrorMessage] = useState<null | string>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  console.log({ displayName });
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -49,11 +54,9 @@ const AuthForm = ({ name, capName }: AuthFormProps) => {
     e.preventDefault();
 
     if (name === 'signup') {
-      console.log('signing up');
       // dispatch(signUpUser({ displayName, email, password }));
-      console.log('auth', auth);
-      console.log(import.meta.env.VITE_FIREBASE_KEY);
       try {
+        setLoading(true);
         const { user } = await createUserWithEmailAndPassword(
           auth,
           email,
@@ -73,19 +76,17 @@ const AuthForm = ({ name, capName }: AuthFormProps) => {
               displayName: user.displayName || null,
             })
           );
-          console.log('signed up success');
+          setLoading(false);
           navigate('/');
         }
       } catch (error) {
+        setLoading(false);
         console.log('error in creating user', error);
       }
-
-      console.log('signed up success');
-      navigate('/');
     } else {
       console.log('signing in');
       // dispatch(signInUser({ email, password }));
-
+      setLoading(true);
       try {
         const { user } = await signInWithEmailAndPassword(
           auth,
@@ -102,9 +103,11 @@ const AuthForm = ({ name, capName }: AuthFormProps) => {
             })
           );
           console.log('signed in success');
+          setLoading(false);
           navigate('/');
         }
       } catch (error) {
+        setLoading(false);
         console.log(error);
       }
     }
@@ -113,6 +116,11 @@ const AuthForm = ({ name, capName }: AuthFormProps) => {
   return (
     <div className='max-w-lg w-full mx-auto flex flex-col items-center justify-start h-[520px]'>
       <h1>{capName}</h1>
+      {errorMessage && (
+        <p className='bg-red-400 px-3 py-2 text-center rounded-md text-white'>
+          {errorMessage}
+        </p>
+      )}
 
       <form
         id={name}
@@ -164,7 +172,9 @@ const AuthForm = ({ name, capName }: AuthFormProps) => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button type='submit'>Enter</button>
+        <button type='submit' disabled={loading}>
+          Enter
+        </button>
       </form>
     </div>
   );

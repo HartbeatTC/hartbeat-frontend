@@ -159,33 +159,33 @@ const authSlice = createSlice({
   //     .addCase(fetchUser.pending, (state) => {
   //       state.isLoading = true;
   //     })
-  //     .addCase(fetchUser.fulfilled, (state, action) => {
+  //     .addCase(fetchUser.fulfilled, (state, action: PayloadAction<User>) => {
   //       state.isLoading = false;
-  //       state.user = action.payload?.user || null;
+  //       state.user = action.payload || null;
   //     })
-  //     .addCase(fetchUser.rejected, (state, action) => {
+  //     .addCase(fetchUser.rejected, (state, action: PayloadAction<User>) => {
   //       state.isLoading = false;
   //       state.error = action.error;
   //     })
   //     .addCase(signUpUser.pending, (state) => {
   //       state.isLoading = true;
   //     })
-  //     .addCase(signUpUser.fulfilled, (state, action) => {
+  //     .addCase(signUpUser.fulfilled, (state, action: PayloadAction<User>) => {
   //       state.isLoading = false;
-  //       state.user = action.payload.user;
+  //       state.user = action.payload;
   //     })
-  //     .addCase(signUpUser.rejected, (state, action) => {
+  //     .addCase(signUpUser.rejected, (state, action: PayloadAction<User>) => {
   //       state.isLoading = false;
   //       state.error = action.error;
   //     })
   //     .addCase(signInUser.pending, (state) => {
   //       state.isLoading = true;
   //     })
-  //     .addCase(signInUser.fulfilled, (state, action) => {
+  //     .addCase(signInUser.fulfilled, (state, action: PayloadAction<User>) => {
   //       state.isLoading = false;
-  //       state.user = action.payload.user;
+  //       state.user = action.payload;
   //     })
-  //     .addCase(signInUser.rejected, (state, action) => {
+  //     .addCase(signInUser.rejected, (state, action: PayloadAction<User>) => {
   //       state.isLoading = false;
   //       state.error = action.error;
   //     })

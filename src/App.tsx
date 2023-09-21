@@ -22,15 +22,8 @@ console.log('env', import.meta.env.VITE_FIREBASE_KEY);
 
 function App() {
   const dispatch = useAppDispatch();
+
   const { user } = useAppSelector((state: RootState) => state.auth);
-
-  // useEffect(() => {
-  //   if (!user) {
-  //     dispatch(fetchUser() as any);
-  //   }
-  // }, [dispatch, user]);
-
-  // const person = getAuth().currentUser;
 
   console.log({ user });
 
@@ -42,7 +35,7 @@ function App() {
             email: user.email,
             id: user.uid,
             photoUrl: user?.photoURL || null,
-            displayName: user?.displayName || null,
+            displayName: user.displayName || null,
           })
         );
     });
