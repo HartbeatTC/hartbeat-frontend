@@ -3,7 +3,7 @@ import { capitalizeFullName } from '../../utils/capitalizeFullName';
 
 const Dashboard = () => {
   const { user } = useAppSelector((state: RootState) => state.auth);
-  console.log({ user });
+
   return (
     <div>
       <h1>Personal Dashboard for...</h1>

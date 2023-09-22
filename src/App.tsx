@@ -9,15 +9,12 @@
 import { useEffect } from 'react';
 import AppRoutes from './AppRoutes.js';
 import { Navbar, AppRoutesContainer } from './components';
-import { auth } from './firebase/index.ts';
 import { checkAuthState } from './redux/features/authSlice.ts';
 import {
   RootState,
   useAppDispatch,
   useAppSelector,
 } from './redux/store/index.ts';
-
-console.log('env', import.meta.env.VITE_FIREBASE_KEY);
 
 function App() {
   const dispatch = useAppDispatch();
