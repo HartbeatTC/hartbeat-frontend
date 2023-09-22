@@ -6,11 +6,12 @@
     United States of America copyright law and fair use.
     */
 
+import { Link } from 'react-router-dom';
 import { RootState, useAppSelector } from '../../redux/store';
 import { capitalizeFullName } from '../../utils/capitalizeFullName';
 
 const Home = () => {
-  const { user } = useAppSelector((state: RootState) => state.auth);
+  const { user, isLoading } = useAppSelector((state: RootState) => state.auth);
 
   return (
     <div>
@@ -18,7 +19,9 @@ const Home = () => {
       {user && user.email !== null ? (
         <p>Welcome {capitalizeFullName(user.displayName ?? '')}</p>
       ) : (
-        <p>Please sign in!</p>
+        <p>
+          <Link to='/login'>Please sign in!</Link>
+        </p>
       )}
     </div>
   );

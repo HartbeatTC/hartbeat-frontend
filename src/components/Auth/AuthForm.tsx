@@ -8,7 +8,7 @@
 
 import { useEffect, useState } from 'react';
 import { AuthFormProps } from '../../interfaces/AuthFormProps';
-import { signInUser, signUpUser } from '../../redux/features/authSlice';
+import { loginUser } from '../../redux/features/authSlice';
 import { useNavigate } from 'react-router-dom';
 // import { useDispatch } from 'react-redux';
 import { useAppDispatch } from '../../redux/store';
@@ -22,7 +22,7 @@ import {
   updateProfile,
 } from 'firebase/auth';
 
-import { login, logout } from '../../redux/features/authSlice';
+// import { login, logout } from '../../redux/features/authSlice';
 
 import { auth } from '../../firebase';
 
@@ -38,13 +38,10 @@ const AuthForm = ({ name, capName }: AuthFormProps) => {
   const [errorMessage, setErrorMessage] = useState<null | string>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
-  console.log({ displayName });
-
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    // Combine firstName and lastName and set displayName when either of them changes
     if (name === 'signup') {
       const newDisplayName = `${firstName} ${lastName}`;
       setDisplayName(newDisplayName);
@@ -53,63 +50,15 @@ const AuthForm = ({ name, capName }: AuthFormProps) => {
   const onFormSubmit = async (e: any) => {
     e.preventDefault();
 
-    if (name === 'signup') {
-      // dispatch(signUpUser({ displayName, email, password }));
-      try {
-        setLoading(true);
-        const { user } = await createUserWithEmailAndPassword(
-          auth,
-          email,
-          password
-        );
-        //update display name
-        await updateProfile(user, {
-          displayName,
-        });
-
-        if (user && user.email) {
-          dispatch(
-            login({
-              email: user.email,
-              id: user.uid,
-              photoUrl: user.photoURL || null,
-              displayName: user.displayName || null,
-            })
-          );
-          setLoading(false);
-          navigate('/');
+    try {
+      await dispatch(loginUser({ displayName, email, password, name })).then(
+        () => {
+          navigate('/dashboard');
         }
-      } catch (error) {
-        setLoading(false);
-        console.log('error in creating user', error);
-      }
-    } else {
-      console.log('signing in');
-      // dispatch(signInUser({ email, password }));
-      setLoading(true);
-      try {
-        const { user } = await signInWithEmailAndPassword(
-          auth,
-          email,
-          password
-        );
-        if (user && user.email) {
-          dispatch(
-            login({
-              email: user.email,
-              id: user.uid,
-              photoUrl: user.photoURL || null,
-              displayName: user.displayName || null,
-            })
-          );
-          console.log('signed in success');
-          setLoading(false);
-          navigate('/');
-        }
-      } catch (error) {
-        setLoading(false);
-        console.log(error);
-      }
+      );
+    } catch (error) {
+      setLoading(false);
+      console.log('error in creating user', error);
     }
   };
 

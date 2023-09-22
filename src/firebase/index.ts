@@ -11,9 +11,6 @@ import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 // import { getAnalytics } from 'firebase/analytics';
 
-console.log('env in firebase', import.meta.env.VITE_FIREBASE_KEY);
-console.log('env object', import.meta.env);
-
 const firebaseConfig = {
   // apiKey: import.meta.env.VITE_FIREBASE_KEY,
   apiKey: 'AIzaSyCGPfY1CDe4fxvEeJPQ42onoswDvpm-OxY',

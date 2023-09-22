@@ -8,7 +8,7 @@
 
 import { Routes, Route } from 'react-router-dom';
 import { AuthForm, PageNotFound } from './components';
-import { Dashboard, Home } from './pages';
+import { Dashboard, Home, Results, Schedule, Team } from './pages';
 import { RootState, useAppSelector } from './redux/store';
 import ProtectedRoutes from './ProtectedRoutes';
 
@@ -30,6 +30,10 @@ const AppRoutes = () => {
           />
         </>
       )}
+      <Route path='/results' element={<Results />} />
+      <Route path='/schedule' element={<Schedule />} />
+      <Route path='/team' element={<Team />} />
+      {/* Protected Routes when user is logged in and authenticated */}
       <Route element={<ProtectedRoutes />}>
         <Route path='/dashboard' element={<Dashboard />} />
       </Route>
