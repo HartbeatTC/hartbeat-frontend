@@ -1,0 +1,39 @@
+.nav-link-desktop {
+  position: relative;
+}
+
+.nav-link-desktop .nav-ul-desktop {
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 100;
+  transform: translateY(-1rem);
+  transition: transform 500ms ease;
+  opacity: 0;
+  transition: transform 500ms ease, opacity 500ms ease;
+  pointer-events: none;
+}
+
+.nav-link-desktop:hover .nav-ul-desktop {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.drop-down-link {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: #fff;
+  text-decoration: none;
+  background-color: #333;
+  transition: background-color 500ms ease;
+}
+
+.drop-down-link:hover {
+  background-color: #555;
+}
+
+.drop-down-ul {
+  border-radius: 16px;
+}

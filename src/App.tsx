@@ -1,5 +1,5 @@
 /*
-    Copyright 2023 Hartbeat Track Club. All rights reserved.
+    Copyright 2024 Hartbeat Track Club. All rights reserved.
     This file or parts thereof may not be reproduced in any form, stored in any retrieval system,
     or transmitted in any form by any means—electronic, mechanical, photocopy, recording, or
     otherwise, without prior written permission of Hartbeat Track Club, except as provided by
@@ -15,6 +15,7 @@ import {
   useAppDispatch,
   useAppSelector,
 } from './redux/store/index.ts';
+import { Footer } from './components';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -25,17 +26,17 @@ function App() {
     dispatch(checkAuthState());
   }, []);
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  // if (isLoading) {
+  //   return <div>Loading...</div>;
+  // }
 
   return (
     <div className='flex flex-col min-h-screen'>
       <Navbar />
       <AppRoutesContainer>
-        <AppRoutes />
+        {isLoading ? <div>Loading...</div> : <AppRoutes />}
       </AppRoutesContainer>
-      <footer> FOOTER </footer>
+      <Footer />
     </div>
   );
 }
