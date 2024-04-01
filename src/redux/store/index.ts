@@ -16,15 +16,17 @@ const rootReducer = combineReducers({
   auth: authReducer,
 });
 
+const middleswares: any = [];
+if (import.meta.env.MODE !== 'production') {
+  middleswares.push(logger);
+}
+
 const store = configureStore({
   reducer: rootReducer,
-  middleware: (getDefaultMiddleware) => {
-    const middleware = getDefaultMiddleware();
-    if (import.meta.env.NODE_ENV !== 'production') {
-      middleware.push(logger);
-    }
-    return middleware;
-  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }).concat(middleswares),
 });
 
 export type AppDispatch = typeof store.dispatch;
