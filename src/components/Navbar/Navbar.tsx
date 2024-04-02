@@ -15,7 +15,7 @@ import { CgProfile } from 'react-icons/cg';
 import { useEffect, useState } from 'react';
 import WebNav from './WebNav';
 import { User } from '../../interfaces/User';
-import { navLinks } from '../../contants/navlinks';
+import { navLinks } from '../../constants/navlinks';
 
 const dropdownClass = 'px-4 py-2 hover:bg-gray-100';
 

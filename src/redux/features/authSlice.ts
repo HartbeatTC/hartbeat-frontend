@@ -33,14 +33,21 @@ const initialState: AuthState = {
 };
 
 // Async thunk for signing out
-export const logoutUser = createAsyncThunk('auth/signOut', async () => {
-  try {
-    signOut(auth);
-    return null; // This will be sent as the action payload on success (user is null)
-  } catch (error) {
-    throw error; // This will trigger the rejection action
+export const logoutUser = createAsyncThunk(
+  'auth/signOut',
+  async (_, { rejectWithValue }) => {
+    try {
+      await signOut(auth);
+      return null;
+    } catch (error) {
+      if (error instanceof Error) {
+        return rejectWithValue(error.message);
+      } else {
+        return rejectWithValue('An unknown error occurred');
+      }
+    }
   }
-});
+);
 
 export const loginUser = createAsyncThunk<
   User,
@@ -214,24 +221,3 @@ const authSlice = createSlice({
 export const selectUser = (state: { auth: AuthState }) => state.auth.user;
 
 export default authSlice.reducer;
-
-// export const checkAuthState = createAsyncThunk(
-//   'auth/checkAuthState',
-//   async (_) => {
-//     // Get the current auth state
-//     const unsubscribe = onAuthStateChanged(auth, async (user) => {
-//       if (user && user.email) {
-//         return user;
-//       }
-//     });
-
-//     return unsubscribe;
-//   }
-// );
-// login: (state, action: PayloadAction<User>) => {
-//   state.user = action.payload;
-//   state.isLoading = false;
-// },
-// logout: (state) => {
-//   state.user = null;
-// },

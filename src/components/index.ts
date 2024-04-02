@@ -12,3 +12,5 @@ export { default as PageNotFound } from './PageNotFound/PageNotFound';
 export { default as MainHero } from './Hero/MainHero';
 export { default as Footer } from './Footer/Footer';
 export { default as ImageCarousel } from './Carousel/ImageCarousel';
+export { default as AthleteCard } from './Card/AthleteCard';
+export { default as CustomHbLink } from './Button/CustomHBLink';
