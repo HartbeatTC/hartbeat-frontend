@@ -10,6 +10,8 @@ export { default as Home } from './Home/Home';
 export { default as Results } from './Results/Results';
 export { default as Schedule } from './Schedule/Schedule';
 export { default as Team } from './Team/Team';
+export { default as IndividualAthleteInfo } from './Team/IndividualAthleteInfo';
+export { default as Contact } from './Contact/Contact';
 
 // protected
 export { default as Dashboard } from './Dashboard/Dashboard';

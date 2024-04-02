@@ -23,7 +23,7 @@ import { auth } from '../../firebase';
 import axios from 'axios';
 import { AppDispatch } from '../store';
 import { AuthState } from '../../interfaces/AuthState';
-import { User } from '../../interfaces/User';
+import { User } from '../../interfaces/IUser';
 
 // initial state of the auth slice
 const initialState: AuthState = {

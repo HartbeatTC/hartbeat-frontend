@@ -8,7 +8,15 @@
 
 import { Routes, Route } from 'react-router-dom';
 import { AuthForm, PageNotFound } from './components';
-import { Dashboard, Home, Results, Schedule, Team } from './pages';
+import {
+  Contact,
+  Dashboard,
+  Home,
+  IndividualAthleteInfo,
+  Results,
+  Schedule,
+  Team,
+} from './pages';
 import { RootState, useAppSelector } from './redux/store';
 import ProtectedRoutes from './ProtectedRoutes';
 import AthleteList from './pages/Team/AthleteList';
@@ -44,6 +52,11 @@ const AppRoutes = () => {
         path='/team/masters'
         element={<AthleteList category='masters' />}
       />
+      <Route
+        path='/team/:category/:firebaseId'
+        element={<IndividualAthleteInfo />}
+      />
+      <Route path='/contact' element={<Contact />} />
       {/* Protected Routes when user is logged in and authenticated */}
       <Route element={<ProtectedRoutes />}>
         <Route path='/dashboard' element={<Dashboard />} />

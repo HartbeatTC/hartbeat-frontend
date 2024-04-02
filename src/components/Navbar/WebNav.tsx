@@ -13,7 +13,6 @@ import { auth } from '../../firebase';
 import { signOut } from 'firebase/auth';
 import { CgProfile } from 'react-icons/cg';
 import { useState } from 'react';
-import { User } from '../../interfaces/User';
 const dropdownClass = 'px-4 py-2 hover:bg-gray-100';
 import './navbar.style.css';
 
@@ -24,17 +23,10 @@ const WebNav = ({
   profile,
   handleIconClick,
   navLinks,
-}: {
-  user: User | null;
-  handleLogout: () => void;
-  handleAuthClick: () => void;
-  profile: boolean;
-  handleIconClick: () => void;
-  navLinks: NavLinks[];
-}) => {
+}: NavProps) => {
   const [activeLink, setActiveLink] = useState<string | null>(null);
   return (
-    <ul className='flex w-full justify-center items-center h-full max-w-6xl'>
+    <ul className='hidden md:flex md:w-full md:justify-center md:items-center md:h-full md:max-w-7xl'>
       {navLinks.map((link, index) => (
         <li
           id='nav-link-desktop'

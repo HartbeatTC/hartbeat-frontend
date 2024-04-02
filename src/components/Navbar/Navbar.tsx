@@ -14,8 +14,8 @@ import { signOut } from 'firebase/auth';
 import { CgProfile } from 'react-icons/cg';
 import { useEffect, useState } from 'react';
 import WebNav from './WebNav';
-import { User } from '../../interfaces/User';
 import { navLinks } from '../../constants/navlinks';
+import MobileNav from './MobileNav';
 
 const dropdownClass = 'px-4 py-2 hover:bg-gray-100';
 
@@ -82,8 +82,16 @@ const Navbar = () => {
 
   const NAV_LINKS = navLinks();
   return (
-    <nav className='flex w-full justify-center items-center mx-auto h-24 bg-slate-200'>
+    <nav className='flex w-full justify-center items-center mx-auto h-24 bg-slate-400'>
       <WebNav
+        user={user as User}
+        handleLogout={handleLogout}
+        handleAuthClick={handleAuthClick}
+        profile={profile}
+        handleIconClick={handleIconClick}
+        navLinks={NAV_LINKS}
+      />
+      <MobileNav
         user={user as User}
         handleLogout={handleLogout}
         handleAuthClick={handleAuthClick}

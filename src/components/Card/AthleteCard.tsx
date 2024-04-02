@@ -16,7 +16,7 @@ const AthleteCard = ({
   const isDefaultImage = backgroundImageUrl.endsWith('hb_withText.webp');
   const location = useLocation();
   const athleteUrl = `${location.pathname}/${athlete?.user.firebaseId}`;
-  console.log('athlete', athlete);
+  console.log('athleteUrl', athleteUrl);
   return (
     <Link
       to={athleteUrl}

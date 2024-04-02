@@ -54,3 +54,7 @@ body {
 .bg-hb-red {
   background-color: var(--hb-red);
 }
+
+.text-hb-red {
+  color: var(--hb-red);
+}

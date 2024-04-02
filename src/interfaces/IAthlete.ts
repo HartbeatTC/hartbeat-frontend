@@ -12,6 +12,13 @@ enum AthleteGender {
   NON_BINARY = 'non-binary',
 }
 
+enum AthleteDivision {
+  OPEN = 'open',
+  MASTERS = 'masters',
+  JUNIOR = 'junior',
+  YOUTH = 'youth',
+}
+
 interface IAthlete {
   firstName: string;
   lastName: string;
@@ -36,4 +43,21 @@ interface ICategorizedAthletes {
 interface ITeamData {
   categorizedAthletes: ICategorizedAthletes;
   maxRows: number;
+}
+
+interface InterfaceIndividualAthlete {
+  firstName: string;
+  lastName: string;
+  email: string;
+  role: BoardMemberRole;
+  isBoardMember: boolean;
+  athlete: {
+    gender: AthleteGender;
+    division: AthleteDivision;
+    teams: string[];
+    profession: string;
+    prs: JSON;
+    about: string;
+    birthday: Date;
+  };
 }
