@@ -17,24 +17,26 @@ const MainHero = ({
   name: string;
 }) => {
   let CLASS =
-    'flex flex-col items-center justify-start sm:flex-row sm:justify-center sm:items-center text-sm sm:text-4xl font-bold sm:gap-2 py-4';
+    'flex flex-col items-center justify-start sm:flex-row sm:justify-center sm:items-center text-5xl sm:text-6xl font-bold sm:gap-2 py-4 w-full max-w-6xl';
   if (name === 'stronger') {
     CLASS =
-      'flex flex-col items-center sm:flex-row sm:justify-start sm:items-center text-4xl sm:text-5xl lg:text-6xl justify-start text-white';
+      'flex flex-col items-center sm:flex-row sm:justify-start sm:items-center text-4xl sm:text-5xl lg:text-6xl justify-start text-white w-full';
   }
   return (
     <div id='home-hero' className={CLASS}>
       {name === 'main' ? (
         <>
-          <h2 className='sm:mb-4 tracking-wider'>{textOne}</h2>
-          <span className='h-20 w-20 sm:h-32 sm:w-32'>
+          <h2 className='sm:p-4 tracking-wider sm:w-1/3 flex-1 text-right'>
+            {textOne}
+          </h2>
+          <span className='h-20 w-20 sm:h-40 sm:w-40 sm:max-w-1/3'>
             <img
               src={LOGO}
               alt='Logo for Hartbeat Track Club'
               className='object-contain'
             />
           </span>
-          <h2 className={`sm:mb-4 tracking-wider `}>{textTwo}</h2>
+          <h2 className={`sm:p-4 tracking-wider sm:w-1/3 flex-1`}>{textTwo}</h2>
         </>
       ) : (
         <>

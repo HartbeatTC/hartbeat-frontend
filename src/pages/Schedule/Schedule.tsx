@@ -6,7 +6,7 @@
     United States of America copyright law and fair use.
     */
 const Schedule = () => {
-  return <div>Schedule</div>;
+  return <div className='flex justify-center items-center'>Schedule</div>;
 };
 
 export default Schedule;
