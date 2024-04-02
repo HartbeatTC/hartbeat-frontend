@@ -9,7 +9,7 @@
 import { Link } from 'react-router-dom';
 import HOME_VID from '../../assets/video/home_video.mp4';
 import { MainHero } from '../../components';
-import { FOOTER } from '../../contants/footer';
+import { FOOTER } from '../../constants/footer';
 import { MdKeyboardDoubleArrowRight } from 'react-icons/md';
 import PRIZZI_HOME from '../../assets/images/home/prizzi_home.webp';
 import KEV_HOME from '../../assets/images/home/kev_home.webp';

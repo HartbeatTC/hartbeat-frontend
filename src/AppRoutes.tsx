@@ -11,6 +11,7 @@ import { AuthForm, PageNotFound } from './components';
 import { Dashboard, Home, Results, Schedule, Team } from './pages';
 import { RootState, useAppSelector } from './redux/store';
 import ProtectedRoutes from './ProtectedRoutes';
+import AthleteList from './pages/Team/AthleteList';
 
 const AppRoutes = () => {
   const { user } = useAppSelector((state: RootState) => state.auth);
@@ -33,6 +34,16 @@ const AppRoutes = () => {
       <Route path='/results' element={<Results />} />
       <Route path='/schedule' element={<Schedule />} />
       <Route path='/team' element={<Team />} />
+      <Route path='/team/men' element={<AthleteList category='male' />} />
+      <Route path='/team/women' element={<AthleteList category='female' />} />
+      <Route
+        path='/team/non-binary'
+        element={<AthleteList category='non-binary' />}
+      />
+      <Route
+        path='/team/masters'
+        element={<AthleteList category='masters' />}
+      />
       {/* Protected Routes when user is logged in and authenticated */}
       <Route element={<ProtectedRoutes />}>
         <Route path='/dashboard' element={<Dashboard />} />

@@ -21,7 +21,7 @@ function App() {
   const dispatch = useAppDispatch();
 
   const { user, isLoading } = useAppSelector((state: RootState) => state.auth);
-
+  console.log('user', user);
   useEffect(() => {
     dispatch(checkAuthState());
   }, []);
